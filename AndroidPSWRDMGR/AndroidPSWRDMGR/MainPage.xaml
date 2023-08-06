@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AndroidPSWRDMGR"
+             xmlns:viewmodels="clr-namespace:AndroidVersion.ViewModels"
+             x:Class="AndroidPSWRDMGR.MainPage" BackgroundColor="#FF212121">
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Grid VerticalOptions="Start" HeightRequest="100" BackgroundColor="#FF272727">
+            <Label Margin="30,0,0,0" 
+                   FontSize="24"
+                   HorizontalOptions="Start" 
+                   Text="ther cant code (...well.....)" 
+                   VerticalOptions="Center"/>
+        </Grid>
+        <Grid HeightRequest="350">
+            <Label x:Name="countLabel" 
+                   Text="{Binding Accounts.Count, UpdateSourceEventName=PropertyChanged}" 
+                   FontSize="50" VerticalOptions="CenterAndExpand" 
+                   Margin="0,0,0,0" HorizontalOptions="Center"/>
+        </Grid>
+        <Grid HeightRequest="100" VerticalOptions="End" HorizontalOptions="FillAndExpand">
+            <Button Text="Click to Increase" Command="{Binding AddItem}"/>
+        </Grid>
+        <Grid HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+            <StackLayout Orientation="Horizontal">
+                <ListView ItemsSource="{Binding AccountsList, UpdateSourceEventName=PropertyChanged}">:
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding AccountName}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>
